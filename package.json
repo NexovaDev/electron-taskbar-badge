@@ -1,0 +1,41 @@
+{
+	"name": "electron-taskbar-badge",
+	"version": "1.0.0",
+	"description": "An easy way for electron apps to add app badges to the taskbar to indicate notifications and other countable things, with maximum compatibility and customizability.",
+	"type": "commonjs",
+	"main": "./lib/cjs/index.js",
+	"exports": {
+		".": {
+			"require": "./lib/cjs/index.js",
+			"default": "./lib/esm/index.mjs"
+		}
+	},
+	"module": "./lib/esm/index.mjs",
+	"types": "./types/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint .",
+		"fix": "eslint . --fix"
+	},
+	"bugs": {
+		"url": "https://github.com/KK-Designs/electron-taskbar-badge/issues",
+		"email": "kkart2007@gmail.com"
+	},
+	"homepage": "https://github.com/KK-Designs/electron-taskbar-badge#readme",
+	"author": "NotBacon",
+	"license": "CC0-1.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KK-Designs/electron-taskbar-badge"
+	},
+	"engines": {
+		"node": ">=14.0.0"
+	},
+	"keywords": [
+		"electron",
+		"windows",
+		"badge",
+		"taskbar",
+		""
+	]
+}

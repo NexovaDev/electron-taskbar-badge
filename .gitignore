@@ -1,0 +1,5 @@
+# Local history
+.history/
+
+# Dependency directories
+node_modules/
