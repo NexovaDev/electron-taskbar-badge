@@ -21,9 +21,9 @@ An easy way for electron apps to add app badges to the taskbar to indicate notif
 • Made the color 100% accurate, no longer an estimation! \
 • Now compatible with automatically set colors! \
 • Automatically changes color when the system accent color changes! \
-• Added RGB support! \
-• Fixed typescript support! \
-• And more bug fixes!
+• Added RGB support \
+• Fixed typescript support \
+• And more bug fixes
 
 ---
 
@@ -39,7 +39,7 @@ npm i electron-taskbar-badge
 
 > ⚠ **This library is ONLY compatible with node version 14 and above! Only supports Windows at the moment**
 
-First you must import the library using the following code:
+First, you must import the library using the following code:
 ```javascript
 const Badge = require('electron-taskbar-badge');
 // or `import * as Badge from 'electron-taskbar-badge';` for ESM users
@@ -51,7 +51,7 @@ For basic usage, all you have to do is call the function with the options:
 const Badge = require('electron-taskbar-badge');
 // or `import * as Badge from 'electron-taskbar-badge';` for ESM users
 
-// NOTE: Although the font size 62px seems large, it is not. It is relative the the radius. Lowering both of these values can decrease quality significantly. Increasing them can reduce performance. Leave the font size as is for basic usage
+// NOTE: Although the font size 62px seems large, it is not. It is relative to the radius. Lowering both of these values can decrease quality significantly. Increasing them can reduce performance. Leave the font size and the radius as is for basic usage
 const badgeOptions = {
 	fontColor: '#FFFFFF', // The font color
 	font: '62px Microsoft Yahei', // The font and its size. You shouldn't have to change this at all
@@ -61,7 +61,7 @@ const badgeOptions = {
 	badgeDescription: 'Unread Notifications', // The badge description
 	invokeType: 'handle', // The IPC event type
 	max: 9, // The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it.
-	fit: false, // Useful for multi-digit numbers. For single digit keep this set to false
+	fit: false, // Useful for multi-digit numbers. For single digits keep this set to false
 	additionalFunc: (count) => {
 		// An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to.
 		console.log(`Received ${count} new notifications!`);
@@ -81,7 +81,7 @@ ipcRenderer.invoke('notificationCount', 8);
 ipcRenderer.sendSync('notificationCount', 8);
 ```
 
-**Thats it! Now you have it running!**
+**That's it! Now you have it running!**
 
 ## More examples
 ### Native look
@@ -116,7 +116,7 @@ new Badge(win, badgeOptions);
 ![Taskbar Badge Green](assets/taskbarBadgeGreen.gif?raw=true)
 
 ### Auto font color
-If you want your badge's font color to be automatically chosen, simply set `fontColor` to `auto`. This will chose the font color between black or white, whichever looks best. Here's an example:
+If you want your badge's font color to be automatically chosen, simply set `fontColor` to `auto`. This will choose the font color between black or white, whichever looks best. Here's an example:
 
 ```javascript
 const badgeOptions = {
@@ -142,15 +142,15 @@ new Badge(win, badgeOptions);
 
 | Parameters    | Type    | Description                            | Default    |
 |---------------|---------|----------------------------------------|---------|
-| `fontColor`    | string (required) | The font color in hex or rgb color format. Pretty self explanatory.  | auto |
+| `fontColor`    | string (required) | The font color in hex or RGB color format. Pretty self-explanatory.  | auto |
 | `font`    | string | The font for the badge icon. The format is [size]px [Font family name] **ALWAYS SET THE FONT SIZE TO 62px FOR BEST QUALITY** | 62px Microsoft Yahei |
-| `color` | string (required) | The background color for the badge icon in hex or rgb color format. | `null` |
+| `color` | string (required) | The background color for the badge icon in hex or RGB color format. | `null` |
 | `radius` | number | The radius for the badge icon **ALWAYS SET TO 48 FOR BEST QUALITY** | 48 |
 | `updateBadgeEvent` | string (required) | The IPC event name to listen on | `null` |
 | `badgeDescription` | string | A description that will be provided to Accessibility screen readers | `this.updateBadgeEvent` |
 | `invokeType` | string | The IPC event type. Can be `send` or `handle`. | send |
 | `max` | number | The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it. | 99 |
-| `fit` | boolean | Automatically sizes large numbers to fit in the badge icon. Set to true only for large 3 digit numbers (including the "+"!) | `false` |
+| `fit` | boolean | Automatically sizes large numbers to fit in the badge icon. Set to true only for large 3-digit numbers (including the "+"!) | `false` |
 | `useSystemAccentTheme` | boolean | Whether to use the system accent color for the background color. fontColor and color will be overridden. It would be automatically chosen between black or white, whichever looks best. | `false` |
 | `additionalFunc` | function(count) | An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to. | `null` |
 
