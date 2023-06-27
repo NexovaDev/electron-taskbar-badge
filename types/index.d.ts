@@ -31,9 +31,9 @@ interface BadgeOptions {
 
 			new Badge(win, badgeOptions);
  * @since 1.0.0
- * @param {BrowserWindow} win
- * @param {object} opts
- * @returns {void}
+ * @param { BrowserWindow } win
+ * @param { object } opts
+ * @returns { void }
 */
 
 export default class Badge {
