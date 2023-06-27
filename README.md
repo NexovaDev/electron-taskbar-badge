@@ -16,9 +16,14 @@ An easy way for electron apps to add app badges to the taskbar to indicate notif
 
 ---
 
-# Changelog (`v1.0.0`)
+# Changelog (`v1.1.0`)
 
-• This release is the first release of Electron Taskbar Badge
+• Made the color 100% accurate, no longer an estimation! \
+• Now compatible with automatically set colors! \
+• Automatically changes color when the system accent color changes! \
+• Added RGB support! \
+• Fixed typescript support! \
+• And more bug fixes!
 
 ---
 
@@ -32,7 +37,7 @@ npm i electron-taskbar-badge
 
 # Basic Usage
 
-> ⚠ **This library is ONLY compatible with node version 14 and above**
+> ⚠ **This library is ONLY compatible with node version 14 and above! Only supports Windows at the moment**
 
 First you must import the library using the following code:
 ```javascript
@@ -41,6 +46,7 @@ const Badge = require('electron-taskbar-badge');
 ```
 \
 For basic usage, all you have to do is call the function with the options:
+### Process: [**Main**](https://www.electronjs.org/docs/latest/glossary#main-process "Main")
 ```javascript
 const Badge = require('electron-taskbar-badge');
 // or `import * as Badge from 'electron-taskbar-badge';` for ESM users
@@ -65,6 +71,16 @@ const badgeOptions = {
 // "win" would be your Electron BrowserWindow object
 new Badge(win, badgeOptions);
 ```
+### Process: [**Renderer**](https://www.electronjs.org/docs/latest/glossary#renderer-process "Renderer")
+```js
+// If invokeType is set to "handle"
+// Replace 8 with whatever number you want the badge to display
+ipcRenderer.invoke('notificationCount', 8);
+
+// If invokeType is set to "send"
+ipcRenderer.sendSync('notificationCount', 8);
+```
+
 **Thats it! Now you have it running!**
 
 ## More examples
@@ -126,15 +142,15 @@ new Badge(win, badgeOptions);
 
 | Parameters    | Type    | Description                            | Default    |
 |---------------|---------|----------------------------------------|---------|
-| `fontColor`    | string (required) | The font color. Pretty self explanatory.  | auto |
+| `fontColor`    | string (required) | The font color in hex or rgb color format. Pretty self explanatory.  | auto |
 | `font`    | string | The font for the badge icon. The format is [size]px [Font family name] **ALWAYS SET THE FONT SIZE TO 62px FOR BEST QUALITY** | 62px Microsoft Yahei |
-| `color` | string (required) | The background color for the badge icon | `null` |
+| `color` | string (required) | The background color for the badge icon in hex or rgb color format. | `null` |
 | `radius` | number | The radius for the badge icon **ALWAYS SET TO 48 FOR BEST QUALITY** | 48 |
 | `updateBadgeEvent` | string (required) | The IPC event name to listen on | `null` |
 | `badgeDescription` | string | A description that will be provided to Accessibility screen readers | `this.updateBadgeEvent` |
 | `invokeType` | string | The IPC event type. Can be `send` or `handle`. | send |
 | `max` | number | The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it. | 99 |
-| `fit` | boolean | The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it. | `false` |
+| `fit` | boolean | Automatically sizes large numbers to fit in the badge icon. Set to true only for large 3 digit numbers (including the "+"!) | `false` |
 | `useSystemAccentTheme` | boolean | Whether to use the system accent color for the background color. fontColor and color will be overridden. It would be automatically chosen between black or white, whichever looks best. | `false` |
 | `additionalFunc` | function(count) | An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to. | `null` |
 
