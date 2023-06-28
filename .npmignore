@@ -1,8 +1,9 @@
 # Local history
 .history/
 
-# Github assets
+# Github
 assets/
+.github/
 
 # ESlint config
 .eslintrc.json
