@@ -2,7 +2,7 @@
 ‎
 [![weekly_downloads](https://img.shields.io/npm/dw/electron-taskbar-badge?color=blue&style=for-the-badge "Weekly Downloads")](https://www.npmjs.com/package/electron-taskbar-badge#:~:text=Weekly%20Downloads)
 ‎
-![downloads](https://badgen.net/npm/dt/electron-taskbar-badge "Downloads")
+![downloads](https://img.shields.io/npm/dt/electron-taskbar-badge?style=for-the-badge&logo=npm&color=%23ca0000&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Felectron-taskbar-badge "Downloads")
 ‎
 [![issues](https://img.shields.io/github/issues/KK-Designs/KK-Designs/electron-taskbar-badge?style=for-the-badge "Issues")](https://github.com/KK-Designs/electron-taskbar-badge/issues)
 ‎
@@ -16,13 +16,11 @@ An easy way for electron apps to add app badges to the taskbar to indicate notif
 
 ---
 
-# Changelog (`v1.1.0`)
+# Changelog (`v1.1.1`)
 
-• Made the color 100% accurate, no longer an estimation! \
-• Now compatible with automatically set colors! \
-• Automatically changes color when the system accent color changes! \
-• Added RGB support \
-• Fixed typescript support \
+• Fixed error when accent color theme was changed when the badge wasn't set \
+• Added default accent color when it cannot be detected (restricted environments, etc.) \
+• Detect non win32 environments \
 • And more bug fixes
 
 ---

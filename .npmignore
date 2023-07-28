@@ -7,3 +7,6 @@ assets/
 
 # ESlint config
 .eslintrc.json
+
+# Packaged builds
+builds/
