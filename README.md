@@ -1,4 +1,4 @@
-[![version](https://img.shields.io/npm/v/electron-taskbar-badge?color=blueviolet&style=for-the-badge "Version")](https://github.com/KK-Designs/electron-taskbar-badge/releases/tag/v1.4.1)
+[![version](https://img.shields.io/npm/v/electron-taskbar-badge?color=blueviolet&style=for-the-badge "Version")](https://github.com/KK-Designs/electron-taskbar-badge/releases/latest)
 ‎
 [![weekly_downloads](https://img.shields.io/npm/dw/electron-taskbar-badge?color=blue&style=for-the-badge "Weekly Downloads")](https://www.npmjs.com/package/electron-taskbar-badge#:~:text=Weekly%20Downloads)
 ‎
