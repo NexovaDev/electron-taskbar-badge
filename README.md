@@ -16,11 +16,9 @@ An easy way for electron apps to add app badges to the taskbar to indicate notif
 
 ---
 
-# Changelog (`v1.1.1`)
+# Changelog (`v1.1.2`)
 
-• Fixed error when accent color theme was changed when the badge wasn't set \
-• Added default accent color when it cannot be detected (restricted environments, etc.) \
-• Detect non win32 environments \
+• Fixed non win32 environments detection \
 • And more bug fixes
 
 ---

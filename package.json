@@ -1,6 +1,6 @@
 {
 	"name": "electron-taskbar-badge",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "An easy way for electron apps to add app badges to the taskbar to indicate notifications and other countable things, with maximum compatibility and customizability.",
 	"type": "commonjs",
 	"main": "./lib/cjs/index.js",
