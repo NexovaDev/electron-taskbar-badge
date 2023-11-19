@@ -1,12 +1,12 @@
-[![version](https://img.shields.io/npm/v/electron-taskbar-badge?color=blueviolet&style=for-the-badge "Version")](https://github.com/KK-Designs/electron-taskbar-badge/releases/latest)
+[![version](https://img.shields.io/npm/v/electron-taskbar-badge?color=blueviolet&style=for-the-badge "Version")](https://github.com/NexovaDev/electron-taskbar-badge/releases/latest)
 ‎
 [![weekly_downloads](https://img.shields.io/npm/dw/electron-taskbar-badge?color=blue&style=for-the-badge "Weekly Downloads")](https://www.npmjs.com/package/electron-taskbar-badge#:~:text=Weekly%20Downloads)
 ‎
 ![downloads](https://img.shields.io/npm/dt/electron-taskbar-badge?style=for-the-badge&logo=npm&color=%23ca0000&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Felectron-taskbar-badge "Downloads")
 ‎
-[![issues](https://img.shields.io/github/issues/KK-Designs/KK-Designs/electron-taskbar-badge?style=for-the-badge "Issues")](https://github.com/KK-Designs/electron-taskbar-badge/issues)
+[![issues](https://img.shields.io/github/issues/NexovaDev/electron-taskbar-badge?style=for-the-badge "Issues")](https://github.com/NexovaDev/electron-taskbar-badge/issues)
 ‎
-[![license](https://img.shields.io/github/license/KK-Designs/electron-taskbar-badge?color=important&style=for-the-badge "License")](https://github.com/KK-Designs/electron-taskbar-badge/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/NexovaDev/electron-taskbar-badge?color=important&style=for-the-badge "License")](https://github.com/NexovaDev/electron-taskbar-badge/blob/master/LICENSE)
 ‎
 [![electron-taskbar-badge](https://nodei.co/npm/electron-taskbar-badge.png "electron-taskbar-badge on NPM")](https://www.npmjs.com/package/electron-taskbar-badge)
 ---

@@ -18,15 +18,15 @@
 		"fix": "eslint . --fix"
 	},
 	"bugs": {
-		"url": "https://github.com/KK-Designs/electron-taskbar-badge/issues",
+		"url": "https://github.com/NexovaDev/electron-taskbar-badge/issues",
 		"email": "kkart2007@gmail.com"
 	},
-	"homepage": "https://github.com/KK-Designs/electron-taskbar-badge#readme",
+	"homepage": "https://github.com/NexovaDev/electron-taskbar-badge#readme",
 	"author": "NotBacon",
 	"license": "GPL-2.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/KK-Designs/electron-taskbar-badge"
+		"url": "https://github.com/NexovaDev/electron-taskbar-badge"
 	},
 	"engines": {
 		"node": ">=14.0.0"
