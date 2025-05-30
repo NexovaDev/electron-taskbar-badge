@@ -10,3 +10,7 @@ assets/
 
 # Packaged builds
 builds/
+
+# NPM
+# No dependencies needed
+package-lock.json

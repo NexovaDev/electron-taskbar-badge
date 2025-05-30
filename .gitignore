@@ -1,8 +1,15 @@
 # Local history
 .history/
 
+# ESlint config
+eslint.config.mjs
+
 # Dependency directories
 node_modules/
+
+# NPM
+# No dependencies needed
+package-lock.json
 
 # Packaged builds
 builds/
