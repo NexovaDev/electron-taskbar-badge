@@ -9,7 +9,7 @@ interface BadgeOptions {
 	max: number,
 	fit: boolean,
 	useSystemAccentTheme: boolean,
-	additionalFunc(count: number): void
+	onBadgeUpdate(count: number): void
 }
 
 /**
@@ -22,7 +22,7 @@ interface BadgeOptions {
 				max: 9,
 				fit: false,
 				useSystemAccentTheme: true,
-				additionalFunc: (count) => {
+				onBadgeUpdate: (count) => {
 					console.log(`Received ${count} new notifications!`);
 				},
 			};

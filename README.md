@@ -58,7 +58,7 @@ const badgeOptions = {
 	invokeType: 'handle', // The IPC event type
 	max: 9, // The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it.
 	fit: false, // Useful for multi-digit numbers. For single digits keep this set to false
-	additionalFunc: (count) => {
+	onBadgeUpdate: (count) => {
 		// An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to.
 		console.log(`Received ${count} new notifications!`);
 	},
@@ -97,7 +97,7 @@ const badgeOptions = {
 	max: 9,
 	fit: false,
 	useSystemAccentTheme: true,
-	additionalFunc: (count) => {
+	onBadgeUpdate: (count) => {
 		console.log(`Received ${count} new notifications!`);
 	},
 };
@@ -125,7 +125,7 @@ const badgeOptions = {
 	invokeType: 'handle',
 	max: 9,
 	fit: false,
-	additionalFunc: (count) => {
+	onBadgeUpdate: (count) => {
 		console.log(`Received ${count} new notifications!`);
 	},
 };
@@ -148,7 +148,7 @@ new Badge(win, badgeOptions);
 | `max` | number | The maximum integer allowed for the badge. Anything above this will have "+" added to the end of it. | 99 |
 | `fit` | boolean | Automatically sizes large numbers to fit in the badge icon. Set to true only for large 3-digit numbers (including the "+"!) | `false` |
 | `useSystemAccentTheme` | boolean | Whether to use the system accent color for the background color. fontColor and color will be overridden. It would be automatically chosen between black or white, whichever looks best. | `false` |
-| `additionalFunc` | function(count) | An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to. | `null` |
+| `onBadgeUpdate` | function(count) | An additional function to run whenever the IPC event fires. It has a count parameter which is the number that the badge was set to. | `null` |
 
 #
 [![](assets/backToTop.png?raw=true "Back to top")](#readme)
