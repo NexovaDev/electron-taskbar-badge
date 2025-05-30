@@ -15,9 +15,7 @@ interface BadgeOptions {
 /**
  * @example const badgeOptions = {
 				fontColor: '#000000',
-				font: '62px Microsoft Yahei',
 				color: '#000000',
-				radius: 48,
 				updateBadgeEvent: 'notificationCount',
 				badgeDescription: 'Unread Notifications',
 				invokeType: 'handle',
