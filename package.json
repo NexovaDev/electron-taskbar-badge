@@ -7,13 +7,16 @@
 	"exports": {
 		".": {
 			"require": "./lib/cjs/index.js",
-			"default": "./lib/esm/index.mjs"
+			"default": "./lib/esm/index.js"
 		}
 	},
-	"module": "./lib/esm/index.mjs",
+	"module": "./lib/esm/index.js",
 	"types": "./types/index.d.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:cjs": "tsc -p tsconfig.cjs.json && node scripts/fix-cjs-exports.cjs",
+		"build:esm": "tsc -p tsconfig.esm.json",
+		"build": "npm run build:cjs && npm run build:esm",
 		"lint": "eslint .",
 		"fix": "eslint . --fix"
 	},
@@ -28,9 +31,6 @@
 		"type": "git",
 		"url": "https://github.com/NexovaDev/electron-taskbar-badge"
 	},
-	"engines": {
-		"node": ">=14.0.0"
-	},
 	"keywords": [
 		"electron",
 		"windows",
@@ -40,9 +40,11 @@
 		"accent"
 	],
 	"devDependencies": {
-		"@eslint/eslintrc": "^3.3.1",
-		"@eslint/js": "^9.27.0",
-		"eslint": "^9.27.0",
-		"globals": "^16.2.0"
+		"@eslint/eslintrc": "^3.3.5",
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.4.0",
+		"globals": "^17.6.0",
+		"electron": ">=20.0.0",
+		"typescript": "^6.0.3"
 	}
 }
