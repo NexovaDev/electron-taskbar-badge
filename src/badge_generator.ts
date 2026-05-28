@@ -28,17 +28,17 @@ export default class BadgeGenerator {
 		this.style = Object.assign({ decimals: 0, systemAccentTheme }, opts);
 	}
 
-	generate(badgeContent: number | string): Promise<string> {
-		if (!badgeContent) return Promise.resolve('');
+	async generate(badgeContent: number | string): Promise<string> {
+		if (!badgeContent) return '';
 		const opts = JSON.stringify(this.style);
-		return this.win.webContents.executeJavaScript(
-			`window.drawBadge = function ${this.drawBadge}; window.drawBadge(${typeof badgeContent === 'number' ? badgeContent : `'${badgeContent}'`}, ${opts});`
-		) as Promise<string>;
+		return await this.win.webContents.executeJavaScript(
+			`window.drawBadge = function ${this.drawBadge}; window.drawBadge(${typeof badgeContent === 'number' ? badgeContent : `'${badgeContent}'`}, ${opts});`,
+		) as string;
 	}
 
-	// Serialized and executed in the renderer via executeJavaScript — no Node.js APIs allowed here
+	// Serialized and executed in the renderer, no node apis allowed
 	drawBadge(badgeContent: number | string, style: DrawStyle): string {
-		if (typeof style?.color !== 'string') {
+		if (typeof style?.color !== 'string' && !style.useSystemAccentTheme) {
 			throw new TypeError(`Invalid color specified\nExpected: string\nGot: ${typeof style?.color}`);
 		}
 		if (/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/gm.test(style?.fontColor)) {
@@ -127,14 +127,21 @@ export default class BadgeGenerator {
 				}
 				this.ctx.fillText(badgeTypes[badgeContent as string], radius, y);
 			}
+			if (typeof badgeNumber === 'number') {
+				this.ctx.textBaseline = 'alphabetic';
+			}
 			if (typeof badgeNumber === 'number' && (badgeContent as string).length === 1) {
-				this.ctx.fillText(badgeContent as string, radius, radius);
+				const m = this.ctx.measureText(badgeContent as string);
+				const textY = Math.round(radius + (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2);
+				this.ctx.fillText(badgeContent as string, radius, textY);
 			}
 			if (typeof badgeNumber === 'number' && (badgeContent as string).length > 1) {
-				fontWidth = this.ctx.measureText(badgeContent as string).width;
+				const m = this.ctx.measureText(badgeContent as string);
+				const yOffset = (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
+				fontWidth = m.width;
 				fontScale = (Math.cos(Math.atan(fontSize / fontWidth)) * this.radius * 2 / fontWidth);
 				this.ctx.setTransform(fontScale, 0, 0, fontScale, this.radius, this.radius);
-				this.ctx.fillText(badgeContent as string, 0, 0);
+				this.ctx.fillText(badgeContent as string, 0, yOffset);
 				this.ctx.setTransform(1, 0, 0, 1, 0, 0);
 			}
 
@@ -142,9 +149,9 @@ export default class BadgeGenerator {
 		};
 
 		function getTextColor(bgColor: string): string {
-			const red = parseInt(bgColor.substr(1, 2), 16);
-			const green = parseInt(bgColor.substr(3, 2), 16);
-			const blue = parseInt(bgColor.substr(5, 2), 16);
+			const red = parseInt(bgColor.substring(1, 3), 16);
+			const green = parseInt(bgColor.substring(3, 5), 16);
+			const blue = parseInt(bgColor.substring(5, 7), 16);
 			const brightness = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
 			return (brightness > 128) ? '#000000' : '#FFFFFF';
 		}
