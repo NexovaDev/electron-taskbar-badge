@@ -20,7 +20,7 @@ export interface BadgeOptions {
 let badgeDescription = 'New notification';
 let UPDATE_BADGE_EVENT!: string;
 let invokeType: 'send' | 'handle' = 'send';
-let onBadgeUpdate: (count: number | BadgeType | null) => void = () => {};
+let onBadgeUpdate: (count: number | BadgeType | null) => void = () => { /* ... */ };
 let currentOverlayIcon: { image: NativeImage | null; badgeDescription: string } = { image: null, badgeDescription };
 let currentNumber: number | BadgeType | null = null;
 
@@ -84,23 +84,32 @@ export default class Badge {
 		const badgeTypes: BadgeType[] = [
 			'alert', 'attention', 'error', 'available', 'away', 'busy', 'unavailable',
 		];
-		if ((typeof badge !== 'number' && typeof badge !== 'string') && badge != null) {
+
+		// All falsy values and negative numbers clear the icon
+		if (!badge || (typeof badge === 'number' && badge < 0)) {
+			currentOverlayIcon = { image: null, badgeDescription };
+			this.win?.setOverlayIcon(currentOverlayIcon.image, currentOverlayIcon.badgeDescription);
+			return;
+		}
+
+		// Validate truthy positive values
+		if (typeof badge !== 'number' && typeof badge !== 'string') {
 			throw new TypeError(`Invalid badge specified.\nExpected: number or string\nGot: ${typeof badge}`);
+		}
+		if (typeof badge === 'number' && !Number.isFinite(badge)) {
+			throw new TypeError(`Invalid badge number specified.\nExpected: positive finite number\nGot: ${badge}`);
 		}
 		if (typeof badge === 'string' && !badgeTypes.some(type => type === badge)) {
 			throw new TypeError(`Invalid badge specified.\nExpected: ${badgeTypes.join(' | ')}\nGot: ${badge}`);
 		}
-		if (badge) {
-			this.generator.generate(badge).then((base64: string) => {
-				const image = nativeImage.createFromDataURL(base64);
-				currentOverlayIcon = { image, badgeDescription };
-				this.win?.setOverlayIcon(currentOverlayIcon.image, currentOverlayIcon.badgeDescription);
-				currentNumber = badge;
-			});
-		} else {
-			currentOverlayIcon = { image: null, badgeDescription };
+
+		// Generate and display badge
+		this.generator.generate(badge).then((base64: string) => {
+			const image = nativeImage.createFromDataURL(base64);
+			currentOverlayIcon = { image, badgeDescription };
 			this.win?.setOverlayIcon(currentOverlayIcon.image, currentOverlayIcon.badgeDescription);
-		}
+			currentNumber = badge;
+		});
 	}
 
 	private initListeners(): void {
@@ -127,14 +136,14 @@ function getLightAccentColor(pwsh: string): string {
 	let accentColorData: number[];
 	try {
 		accentColorData = (JSON.parse(
-			execSync(`"${pwsh}" -NoProfile -Command "Get-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent' | Select-Object AccentPalette | ConvertTo-Json"`).toString()
+			execSync(`"${pwsh}" -NoProfile -Command "Get-ItemProperty -Path 'HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent' | Select-Object AccentPalette | ConvertTo-Json"`).toString(),
 		) as { AccentPalette: number[] }).AccentPalette;
 	} catch {
 		return '#4cc2ff';
 	}
 	const accentColorLight = Array.from(
 		{ length: Math.ceil(accentColorData.length / 4) },
-		(_, i) => accentColorData.slice(i * 4, i * 4 + 4)
+		(_, i) => accentColorData.slice(i * 4, i * 4 + 4),
 	).map(arr => arr.slice(0, arr.length - 1))[1];
 	return rgbToHex(accentColorLight[0], accentColorLight[1], accentColorLight[2]);
 }
