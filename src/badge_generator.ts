@@ -50,14 +50,14 @@ export default class BadgeGenerator {
 		if (!/^#[0-9A-F]{6}$/i.test(style?.fontColor)) {
 			style.fontColor = 'auto';
 		}
-		style.font = '72px \'Segoe UI Variable Text\', \'Segoe UI\', sans-serif';
+		const radius = 48;
+		style.font = `${radius * 1.5}px 'Segoe Fluent Icons', 'Segoe MDL2 Assets', 'Segoe UI Variable Text', 'Segoe UI', sans-serif`;
 		style.fontColor = style?.fontColor ?? 'auto';
-		style.radius = 48;
+		style.radius = radius;
 		style.useSystemAccentTheme = style?.useSystemAccentTheme ?? false;
 		style.decimals = style?.decimals === undefined || isNaN(style.decimals) ? 0 : style.decimals;
 		style.max = style?.max ?? 9;
 
-		const radius = style.radius;
 		const img = document.createElement('canvas') as BadgeCanvas;
 		img.width = Math.ceil(radius * 2);
 		img.height = Math.ceil(radius * 2);
@@ -80,13 +80,24 @@ export default class BadgeGenerator {
 
 		img.draw = function(this: BadgeCanvas): BadgeCanvas {
 			const badgeTypes: Record<string, string> = {
-				alert: '*',
-				attention: '!',
-				error: '×',
-				available: '🟢',
-				away: '🟡',
-				busy: '🔴',
-				unavailable: '🩶',
+				activity: '\uEDAB',
+				alarm: '\uEDAC',
+				alert: '\uEDAD',
+				attention: '\uEDB1',
+				error: '\uEDAE',
+				available: '\uEDAF',
+				away: '\uEDAF',
+				busy: '\uEDAF',
+				unavailable: '\uEDAF',
+				newMessage: '\uEDB3',
+				paused: '\uEDB4',
+				playing: '\uEDB5',
+			};
+			const fluentColors: Record<string, string> = {
+				available: '#107C41',
+				busy: '#D83B01',
+				away: '#FDE300',
+				unavailable: '#616161',
 			};
 			let fontScale: number, fontWidth: number;
 			this.width = Math.ceil(this.radius * 2);
@@ -111,21 +122,8 @@ export default class BadgeGenerator {
 			}
 
 			if (Object.keys(badgeTypes).some(type => type === badgeContent)) {
-				let y = radius;
-				if (badgeContent === 'alert') {
-					y = y / 0.625;
-					this.ctx.font = this.ctx.font.replace(String(fontSize), String(fontSize * 2));
-				}
-				if (badgeContent === 'attention') {
-					this.ctx.font = this.ctx.font.replace(String(fontSize), String(fontSize * 1.25));
-				}
-				if (badgeContent === 'error') {
-					this.ctx.font = this.ctx.font.replace(String(fontSize), String(fontSize * 1.75));
-				}
-				if (['available', 'away', 'busy', 'unavailable'].some(status => status === badgeContent)) {
-					this.ctx.font = this.ctx.font.replace(String(fontSize), String(fontSize * 4));
-				}
-				this.ctx.fillText(badgeTypes[badgeContent as string], radius, y);
+				this.ctx.fillStyle = fluentColors[badgeContent];
+				this.ctx.fillText(badgeTypes[badgeContent as string], radius, radius);
 			}
 			if (typeof badgeNumber === 'number') {
 				this.ctx.textBaseline = 'alphabetic';

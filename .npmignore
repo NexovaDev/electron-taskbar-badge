@@ -15,6 +15,9 @@ builds/
 # No dependencies needed
 package-lock.json
 
+# Tests
+tests/
+
 # TypeScript source
 src/
 tsconfig*.json

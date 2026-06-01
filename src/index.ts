@@ -4,7 +4,7 @@ import { execSync } from 'child_process';
 import * as fs from 'fs';
 import BadgeGenerator from './badge_generator';
 
-export type BadgeType = 'alert' | 'attention' | 'error' | 'available' | 'away' | 'busy' | 'unavailable';
+export type BadgeType = 'activity' | 'alarm' | 'alert' | 'attention' | 'error' | 'available' | 'away' | 'busy' | 'unavailable' | 'newMessage' | 'paused' | 'playing';
 
 export interface BadgeOptions {
 	fontColor?: string;
@@ -82,7 +82,18 @@ export default class Badge {
 
 	update(badge: number | BadgeType | null): void {
 		const badgeTypes: BadgeType[] = [
-			'alert', 'attention', 'error', 'available', 'away', 'busy', 'unavailable',
+			'activity',
+			'alarm',
+			'alert',
+			'attention',
+			'error',
+			'available',
+			'away',
+			'busy',
+			'unavailable',
+			'newMessage',
+			'paused',
+			'playing',
 		];
 
 		// All falsy values and negative numbers clear the icon
