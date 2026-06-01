@@ -50,7 +50,7 @@ export default class BadgeGenerator {
 		if (!/^#[0-9A-F]{6}$/i.test(style?.fontColor)) {
 			style.fontColor = 'auto';
 		}
-		style.font = '62px Microsoft Yahei';
+		style.font = '72px \'Segoe UI Variable Text\', \'Segoe UI\', sans-serif';
 		style.fontColor = style?.fontColor ?? 'auto';
 		style.radius = 48;
 		style.useSystemAccentTheme = style?.useSystemAccentTheme ?? false;
