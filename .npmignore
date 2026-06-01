@@ -6,7 +6,7 @@ assets/
 .github/
 
 # ESlint config
-.eslintrc.json
+eslint.config.mjs
 
 # Packaged builds
 builds/

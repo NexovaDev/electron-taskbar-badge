@@ -8,6 +8,9 @@ node_modules/
 # No dependencies needed
 package-lock.json
 
+# ESlint config
+eslint.config.mjs
+
 # Tests
 tests/
 

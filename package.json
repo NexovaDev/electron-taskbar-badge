@@ -1,7 +1,7 @@
 {
 	"name": "electron-taskbar-badge",
-	"version": "1.1.2",
-	"description": "An easy way for electron apps to add app badges to the taskbar to indicate notifications and other countable things, with maximum compatibility and customizability.",
+	"version": "2.0.0",
+	"description": "An easy way for electron apps to add app badges to the taskbar to indicate notifications, status, or countable items, with maximum compatibility and customizability.",
 	"type": "commonjs",
 	"main": "./lib/cjs/index.js",
 	"exports": {
@@ -25,7 +25,7 @@
 		"email": "kkart2007@gmail.com"
 	},
 	"homepage": "https://github.com/NexovaDev/electron-taskbar-badge#readme",
-	"author": "NotBacon",
+	"author": "onyx-nxt",
 	"license": "GPL-2.0",
 	"repository": {
 		"type": "git",
@@ -45,7 +45,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.60.0",
 		"@typescript-eslint/parser": "^8.60.0",
 		"electron": ">=20.0.0",
-		"eslint": "^10.4.0",
+		"eslint": "^10.4.1",
 		"globals": "^17.6.0",
 		"typescript": "^6.0.3"
 	}
