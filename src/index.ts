@@ -100,7 +100,11 @@ export default class Badge {
 			throw new TypeError(`Invalid badge number specified.\nExpected: positive finite number\nGot: ${badge}`);
 		}
 		if (typeof badge === 'string' && !badgeTypes.some(type => type === badge)) {
-			throw new TypeError(`Invalid badge specified.\nExpected: ${badgeTypes.join(' | ')}\nGot: ${badge}`);
+			if (parseInt(badge) >= 0) {
+				badge = parseInt(badge);
+			} else {
+				throw new TypeError(`Invalid badge specified.\nExpected: ${badgeTypes.join(' | ')}\nGot: ${badge}`);
+			}
 		}
 
 		// Generate and display badge
